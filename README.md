@@ -20,7 +20,7 @@ Todos os recursos são configurados via Terraform para Google Cloud Platform (GC
 
    ```bash
    git clone https://github.com/seu-usuario/Catalogo-de-Cloud.git
-   cd Catalogo-de-Cloud
+   cd Catalogo-Cloud
 2. Altere para o diretório da nuvem desejada (gcp, azure, oci, aws).
 
 3. Inicialize o Terraform e aplique as configurações:
