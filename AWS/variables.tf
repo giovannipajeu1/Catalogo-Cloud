@@ -1,12 +1,12 @@
 variable "access_key_aws" {
   type      = string
-  default   = file(env)
+  default   = env
   sensitive = true
 }
 
 variable "secret_key_aws" {
   type      = string
-  default   = file(env)
+  default   = env
   sensitive = true
 }
 
@@ -16,10 +16,6 @@ variable "region" {
 
 }
 
-variable "port_data_base" {
-  type    = number
-  default = 27017
-}
 
 
 variable "instance_tenancy" {
@@ -27,15 +23,6 @@ variable "instance_tenancy" {
   default = "default"
 }
 
-variable "instance_type" {
-  type    = string
-  default = "t2.micro"
-}
-
-variable "ami" {
-  type    = string
-  default = "ami-0f403e3180720dd7e"
-}
 
 variable "cidr_block_vpc" {
   type    = string
@@ -50,4 +37,31 @@ variable "cidr_block_subnet_pub" {
 variable "cidr_block_subnet_priv" {
   type    = string
   default = "10.0.1.0/24"
+}
+
+
+variable "cluster_name" {
+  type    = string
+  default = "nome-do-cluster"
+}
+
+
+variable "kubernetes_version" {
+  default = "1.29"
+}
+
+variable "fargate_profile_name" {
+  type    = string
+  default = "fargate-profile"
+}
+
+
+variable "availability_zone_pub" {
+  type = string
+  default = "us-east-1a"
+}
+
+variable "availability_zone_priv" {
+  type = string
+  default = "us-east-1b"
 }

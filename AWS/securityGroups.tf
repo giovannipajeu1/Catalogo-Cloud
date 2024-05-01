@@ -1,7 +1,6 @@
-resource "aws_security_group" "avg_sg_web" {
-  name        = "avg_sg_web"
-  description = "Firewall para as EC2  WEB"
-  vpc_id      = aws_vpc.avg_vpc.id
+resource "aws_security_group" "sg_web_eks" {
+  name   = "sg_web_eks"
+  vpc_id = aws_vpc.vpc_eks.id
 
   ingress {
     description      = "Regra HTTP"
@@ -21,15 +20,7 @@ resource "aws_security_group" "avg_sg_web" {
     ipv6_cidr_blocks = ["::/0"]
 
   }
-  ingress {
-    description = "Acesso SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-
+  
   egress {
     from_port        = 80
     to_port          = 80
@@ -58,28 +49,16 @@ resource "aws_security_group" "avg_sg_web" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-  egress {
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-  egress {
-    from_port        = var.port_data_base
-    to_port          = var.port_data_base
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
+  
+
 
 
 
 }
 
-resource "aws_network_acl" "avg_nacl_web" {
-  vpc_id     = aws_vpc.avg_vpc.id
-  subnet_ids = [aws_subnet.avg_subnet_pub.id]
+resource "aws_network_acl" "nacl_eks_web" {
+  vpc_id     = aws_vpc.vpc_eks.id
+  subnet_ids = [aws_subnet.subnet_pub_eks.id]
 
   ingress {
     protocol   = "tcp"
@@ -96,14 +75,6 @@ resource "aws_network_acl" "avg_nacl_web" {
     cidr_block = "0.0.0.0/0"
     from_port  = 443
     to_port    = 443
-  }
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
   }
   ingress {
     protocol   = "tcp"
@@ -161,14 +132,6 @@ resource "aws_network_acl" "avg_nacl_web" {
     cidr_block = "0.0.0.0/0"
     from_port  = 443
     to_port    = 443
-  }
-  egress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
   }
   egress {
     protocol   = "tcp"
