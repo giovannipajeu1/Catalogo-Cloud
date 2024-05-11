@@ -1,18 +1,18 @@
 variable "tenancy_ocid" {
   type      = string
-  default   = "ocid1.tenancy.oc1..aaaaaaaafdduxmvajcndqnxg6gr3glo5hinghixw35cyk4dqishfu7xsadvq"
+  default   = 
   sensitive = true
 }
 
 variable "private_key_path" {
   type      = string
-  default   = "/home/v3x0r/.key/cp.pem"
+  default   = 
   sensitive = true
 }
 
 variable "user_ocid" {
   type      = string
-  default   = "ocid1.user.oc1..aaaaaaaamuzskolyby5myakulqkskbl5s2cwqk3zzfpmy262pxzszpv66gsq"
+  default   =
   sensitive = true
 }
 
@@ -23,12 +23,12 @@ variable "region" {
 
 variable "fingerprint" {
   type    = string
-  default = "a7:83:ba:fe:6d:ee:2e:7f:40:a5:52:08:1a:38:1e:a1"
+  default = 
 }
 
 variable "compartment_id" {
   type      = string
-  default   = "ocid1.compartment.oc1..aaaaaaaa4ovxjbj2skv3mmyo3dhtsnd6wjifyquu62uhlv5sjhnyqsq7qisq"
+  default   = 
   sensitive = true
 }
 variable "shape" {
@@ -49,7 +49,7 @@ variable "namepool" {
 }
 variable "image_id" {
   type    = string
-  default = "ocid1.image.oc1.sa-saopaulo-1.aaaaaaaagwjfqfxv64vjv4f2shadbnpd22civx5bpt3sdd4feweqdye4wqja"
+  default = 
 }
 variable "source_type" {
   type    = string
