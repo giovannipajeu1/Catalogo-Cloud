@@ -3,6 +3,7 @@ resource "oci_containerengine_cluster" "oke-cluster" {
   kubernetes_version = var.kubeversion
   name               = var.nomecluster
   vcn_id             = oci_core_virtual_network.minha_vcn.id
+  
 
   options {
     add_ons {
@@ -12,8 +13,14 @@ resource "oci_containerengine_cluster" "oke-cluster" {
     kubernetes_network_config {
       pods_cidr     = var.pods_cidr
       services_cidr = var.services_cidr
+      
     }
-    service_lb_subnet_ids = [oci_core_subnet.subnet_privada.id]
+    service_lb_subnet_ids = [oci_core_subnet.subnet_publica.id]
+  }
+
+  endpoint_config {
+    is_public_ip_enabled = false
+    subnet_id = oci_core_subnet.subnet_privada.id
   }
 }
 
@@ -40,4 +47,14 @@ resource "oci_containerengine_node_pool" "oke-node-pool" {
     image_id    = var.image_id
     source_type = var.source_type
   }
+  node_shape_config {
+    memory_in_gbs = var.memory_in_gbs
+    ocpus = var.ocpus
+  }
+  freeform_tags = {
+    "projeto" = var.freeform_tags
+  }
 }
+
+
+//TODO Acertar imagem do node poll

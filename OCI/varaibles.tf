@@ -1,18 +1,18 @@
 variable "tenancy_ocid" {
   type      = string
-  default   = 
+  default   = ""
   sensitive = true
 }
 
 variable "private_key_path" {
   type      = string
-  default   = 
+  default   = "/home/v3x0r/.key/cp.pem"
   sensitive = true
 }
 
 variable "user_ocid" {
   type      = string
-  default   =
+  default   = ""
   sensitive = true
 }
 
@@ -23,12 +23,12 @@ variable "region" {
 
 variable "fingerprint" {
   type    = string
-  default = 
+  default = ""
 }
 
 variable "compartment_id" {
   type      = string
-  default   = 
+  default   = ""
   sensitive = true
 }
 variable "shape" {
@@ -41,7 +41,7 @@ variable "kubeversion" {
 }
 variable "nomecluster" {
   type    = string
-  default = "DEV-GRU-OCI"
+  default = "PROD-GRU-OCI"
 }
 variable "namepool" {
   type    = string
@@ -49,7 +49,7 @@ variable "namepool" {
 }
 variable "image_id" {
   type    = string
-  default = 
+  default = ""
 }
 variable "source_type" {
   type    = string
@@ -91,4 +91,19 @@ variable "endpoint_type_api_gateway" {
 variable "destinationPrivate" {
   type    = string
   default = "10.0.2.0/24"
+}
+
+variable "memory_in_gbs" {
+  type = string
+  default = "8"
+}
+
+variable "ocpus" {
+  type = string
+  default = "1"
+}
+
+variable "freeform_tags" {
+  type = string
+  default = "projeto"
 }

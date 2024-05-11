@@ -20,6 +20,7 @@ resource "oci_core_subnet" "subnet_publica" {
   display_name   = "Subnet Pública"
   vcn_id         = oci_core_virtual_network.minha_vcn.id
   dns_label      = "subnetpublica"
+  security_list_ids = [oci_core_security_list.public_security_list.id]
 
 }
 # Rota para a sub-rede pública
@@ -46,6 +47,7 @@ resource "oci_core_subnet" "subnet_privada" {
   display_name   = "Subnet Privada"
   vcn_id         = oci_core_virtual_network.minha_vcn.id
   dns_label      = "subnetprivada"
+  security_list_ids = [oci_core_security_list.private-security-list.id]
 
 }
 
