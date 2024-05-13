@@ -1,9 +1,12 @@
 resource "oci_containerengine_cluster" "oke-cluster" {
-  compartment_id     = var.compartment_id
+  compartment_id     = oci_identity_compartment.compartment.id
   kubernetes_version = var.kubeversion
   name               = var.nomecluster
   vcn_id             = oci_core_virtual_network.minha_vcn.id
-  
+  type               = "BASIC_CLUSTER"
+  cluster_pod_network_options {
+    cni_type = var.cni_type
+  }
 
   options {
     add_ons {
@@ -13,48 +16,31 @@ resource "oci_containerengine_cluster" "oke-cluster" {
     kubernetes_network_config {
       pods_cidr     = var.pods_cidr
       services_cidr = var.services_cidr
-      
+
+    }
+    admission_controller_options {
+      is_pod_security_policy_enabled = false
     }
     service_lb_subnet_ids = [oci_core_subnet.subnet_publica.id]
   }
 
   endpoint_config {
     is_public_ip_enabled = false
-    subnet_id = oci_core_subnet.subnet_privada.id
+    subnet_id            = oci_core_subnet.subnet_privada.id
   }
+
+  freeform_tags = {
+    "projeto" = var.freeform_tags
+  }
+  image_policy_config {
+    is_policy_enabled = false
+  }
+
 }
 
 data "oci_identity_availability_domains" "ads" {
   compartment_id = var.compartment_id
 }
 
-resource "oci_containerengine_node_pool" "oke-node-pool" {
-  cluster_id         = oci_containerengine_cluster.oke-cluster.id
-  compartment_id     = var.compartment_id
-  kubernetes_version = var.kubeversion
-  name               = var.namepool
-  node_config_details {
-    placement_configs {
-      availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
-      subnet_id           = oci_core_subnet.subnet_privada.id
-    }
-    size = var.nodeTamanho
-  }
-  node_shape = var.shape
 
 
-  node_source_details {
-    image_id    = var.image_id
-    source_type = var.source_type
-  }
-  node_shape_config {
-    memory_in_gbs = var.memory_in_gbs
-    ocpus = var.ocpus
-  }
-  freeform_tags = {
-    "projeto" = var.freeform_tags
-  }
-}
-
-
-//TODO Acertar imagem do node poll
