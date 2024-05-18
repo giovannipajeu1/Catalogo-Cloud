@@ -1,19 +1,15 @@
 resource "oci_devops_project" "project-devops" {
   #Required
-  compartment_id = oci_identity_compartment.compartment.id
-  name           = var.project_name
+  compartment_id = oci_identity_compartment.DEVOPS.id
+  name           = "${var.project_name}DEVOPS"
+  depends_on = [ oci_identity_compartment.DEVOPS ]
   notification_config {
     #Required
-    topic_id = oci_ons_notification_topic.test_notification_topic.id
+    topic_id = oci_ons_notification_topic.notification-devops.id
   }
 
   #Optional
 
-  description = var.project_description
+  description = "${var.project_description}DEVOPS"
 
-}
-
-resource "oci_ons_notification_topic" "test_notification_topic" {
-  compartment_id = oci_identity_compartment.compartment.id
-  name           = var.notification
 }
