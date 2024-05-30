@@ -65,3 +65,25 @@ variable "availability_zone_priv" {
   type = string
   default = "us-east-1b"
 }
+
+
+
+variable "nameLb" {
+  type = string
+  default = "Nome do LoadBalancer"
+}
+
+variable "internal" {
+  type = bool
+  default = false
+}
+
+variable "TypeLoadBalancer" {
+  type = string
+  default = "network"
+}
+
+variable "Ambiente" {
+  type = string
+  default = "Dev"
+}
