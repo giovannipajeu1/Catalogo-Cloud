@@ -1,12 +1,12 @@
 ###########################################ECS######################################################################################
 variable "nomeCluster" {
   type    = string
-  default = "Nome do Cluster ECS"
+  default = "ecommerce"
 }
 
 variable "nameECSService" {
   type    = string
-  default = "Service do Cliente"
+  default = "ecommerce"
 }
 
 variable "ContainerPort" {
@@ -16,23 +16,25 @@ variable "ContainerPort" {
 
 variable "ContainerName" {
   type    = string
-  default = "Nome Do Container"
+  default = ""
 }
 
-variable "container_image" {
-  type    = string
-  default = "image"
+
+variable "aws_count_id" {
+  type      = string
+  default   = "891377173184"
+  sensitive = true
 }
 #################################################################################################################################
 variable "access_key_aws" {
   type      = string
-  default   = env
+  default   = ""
   sensitive = true
 }
 
 variable "secret_key_aws" {
   type      = string
-  default   = env
+  default   = ""
   sensitive = true
 }
 
@@ -58,6 +60,10 @@ variable "cidr_block_subnet_pub" {
   default = "10.0.0.0/24"
 }
 
+variable "cidr_block_subnet_pub2" {
+  type    = string
+  default = "10.0.2.0/24"
+}
 variable "cidr_block_subnet_priv" {
   type    = string
   default = "10.0.1.0/24"
@@ -69,6 +75,11 @@ variable "availability_zone_pub" {
   default = "us-east-1a"
 }
 
+variable "availability_zone_pub2" {
+  type    = string
+  default = "us-east-1b"
+}
+
 variable "availability_zone_priv" {
   type    = string
   default = "us-east-1b"
@@ -76,7 +87,7 @@ variable "availability_zone_priv" {
 
 variable "nameLb" {
   type    = string
-  default = "Nome do LoadBalancer"
+  default = "load-balancer"
 }
 
 variable "internal" {
@@ -84,22 +95,12 @@ variable "internal" {
   default = false
 }
 
-variable "TypeLoadBalancer" {
-  type    = string
-  default = "network"
-}
-
 variable "Ambiente" {
   type    = string
-  default = "dev"
+  default = "producao"
 }
 #################################################################################################################################
 variable "name" {
   type    = string
-  default = "registry"
-}
-
-variable "health_check_path" {
-  type = string
-  default = "path/path/path"
+  default = "api"
 }

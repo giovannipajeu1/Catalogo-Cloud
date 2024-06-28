@@ -56,7 +56,7 @@ variable "net_gateway_name" {
 
 variable "destinationPrivate" {
   type    = string
-  default = "10.0.2.0/24"
+  default = ""
 }
 #############Nodes Pool##################
 variable "kubeversion" {
@@ -108,7 +108,7 @@ variable "nodeTamanho" {
 #############Cluster##################
 variable "nomecluster" {
   type    = string
-  default = "PROD-GRU-OCI"
+  default = "CLUSTER"
 }
 variable "cni_type" {
   type    = string
@@ -116,11 +116,11 @@ variable "cni_type" {
 }
 variable "pods_cidr" {
   type    = string
-  default = "10.244.0.0/16"
+  default = ""
 }
 variable "services_cidr" {
   type    = string
-  default = "10.96.0.0/16"
+  default = ""
 }
 
 variable "freeform_tags" {

@@ -1,5 +1,6 @@
 # Catalogo de Cloud
-Este repositório contém arquivos Terraform para provisionar infraestrutura na nuvem, focado em Kubernetes e Docker. 
+Este repositório contém arquivos Terraform para provisionar infraestrutura na nuvem, focado em Clusters Kubernetes. 
+
 Todos os recursos são configurados via Terraform para Google Cloud Platform (GCP), Microsoft Azure, Oracle Cloud Infrastructure (OCI) e Amazon Web Services (AWS).
 
 ## Estrutura do Repositório
@@ -19,9 +20,11 @@ Todos os recursos são configurados via Terraform para Google Cloud Platform (GC
 1. Clone este repositório em sua máquina local:
 
    ```bash
-   git clone https://github.com/seu-usuario/Catalogo-de-Cloud.git
-   cd Catalogo-Cloud
+   git clone {{seu.clone.aqui}}
+   cd Catalogo-de-Cloud
 2. Altere para o diretório da nuvem desejada (gcp, azure, oci, aws).
+   ```bash
+   Altere o arquivo variables.tf para suas credencias/necessidades
 
 3. Inicialize o Terraform e aplique as configurações:
    ```bash
